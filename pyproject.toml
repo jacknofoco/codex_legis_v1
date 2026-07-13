@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "legislacao-editorial"
+version = "0.2.0"
+description = "Coleta, versiona e transforma legislacao oficial brasileira em material de estudo auditavel."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "beautifulsoup4>=4.12,<5",
+  "httpx[socks]>=0.27,<1",
+  "pypdf>=5,<7",
+  "reportlab>=4.2,<5",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10"]
+
+[project.scripts]
+legislacao = "legislacao_editorial.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
